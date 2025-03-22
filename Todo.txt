@@ -1,0 +1,8 @@
+1.Landing Page
+2.Login/Signup page
+	For buyer
+	For seller
+2.Tickets adding
+3.Cart functionality
+4.Authentication
+5.Mongo Link (events added by host should show on the buyer  screen)
