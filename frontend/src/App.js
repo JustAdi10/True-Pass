@@ -10,6 +10,9 @@ import CategoryPage from './pages/CategoryPage';
 import EventDetailPage from './pages/EventDetailPage';
 import GlobalStyle from './styles/GlobalStyle';
 import { theme } from './styles/theme';
+import CartPage from "./pages/CartPage"; 
+//import CartContextObj from './context/cartContext';
+
 
 
 function App() {
@@ -23,6 +26,7 @@ function App() {
           <Route path="/events" element={<EventsPage />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/event/:eventId" element={<EventDetailPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
         <Footer />
       </Router>

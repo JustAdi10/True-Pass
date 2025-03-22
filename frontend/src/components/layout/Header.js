@@ -1,8 +1,12 @@
+// original header
+
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import SearchBar from '../common/SearchBar';
+
 
 const HeaderContainer = styled.header`
   display: flex;

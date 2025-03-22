@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { PurchaseTicketButton } from './CartPage'; // Import the PurchaseTicketButton
 
-const PageContainer = styled.div`
-  min-height: calc(100vh - 64px);
-  padding: 32px 24px;
-  max-width: 1200px;
-  margin: 0 auto;
+const EventDetailContainer = styled.div`
+  min-height: 100vh;
+  background: linear-gradient(to bottom, ${props => props.theme.colors.dark}, #1a174d);
+  color: white;
 `;
 
-const EventGrid = styled.div`
+const EventContent = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  gap: 40px;
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -21,193 +24,161 @@ const EventGrid = styled.div`
 
 const EventImage = styled.div`
   width: 100%;
-  aspect-ratio: 1;
+  height: 400px;
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   overflow: hidden;
-  background-image: url(${props => props.src});
-  background-size: cover;
-  background-position: center;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 const EventInfo = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 24px;
 `;
 
-const CategoryBadge = styled.div`
-  display: inline-block;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: ${props => props.theme.colors.primary};
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  margin-bottom: 16px;
+const EventCategory = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  color: ${props => props.theme.colors.secondary};
 `;
 
 const EventTitle = styled.h1`
-  font-size: 2.5rem;
+  font-size: 40px;
   font-weight: 700;
-  margin-bottom: 16px;
+  line-height: 1.2;
+  margin: 0;
 `;
 
 const EventDescription = styled.p`
-  color: ${props => props.theme.colors.secondary};
+  font-size: 16px;
   line-height: 1.6;
-  margin-bottom: 24px;
+  color: ${props => props.theme.colors.secondary};
 `;
 
-const EventStats = styled.div`
+const InfoGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
-  margin-bottom: 32px;
+  margin-top: 16px;
 `;
 
-const StatItem = styled.div`
+const InfoBox = styled.div`
   background-color: rgba(255, 255, 255, 0.05);
   padding: 16px;
   border-radius: 8px;
 `;
 
-const StatLabel = styled.div`
+const InfoLabel = styled.div`
+  font-size: 14px;
   color: ${props => props.theme.colors.secondary};
-  font-size: 0.9rem;
   margin-bottom: 8px;
 `;
 
-const StatValue = styled.div`
-  font-size: 1.2rem;
+const InfoValue = styled.div`
+  font-size: 16px;
   font-weight: 600;
 `;
 
-const PriceContainer = styled.div`
-  background-color: rgba(204, 204, 255, 0.1);
-  padding: 16px;
+const PriceBox = styled.div`
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 24px;
   border-radius: 8px;
-  margin-bottom: 24px;
+  margin-top: 24px;
 `;
 
 const PriceLabel = styled.div`
+  font-size: 14px;
   color: ${props => props.theme.colors.secondary};
-  font-size: 0.9rem;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 `;
 
 const PriceValue = styled.div`
-  font-size: 2rem;
+  font-size: 32px;
   font-weight: 700;
-  color: ${props => props.theme.colors.primary};
+  margin-bottom: 16px;
 `;
 
-const Button = styled.button`
-  background-color: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.dark};
-  font-weight: 600;
-  padding: 14px 0;
-  border-radius: 8px;
-  font-size: 1rem;
-  width: 100%;
-  margin-top: auto;
-  transition: all 0.2s ease;
-  
-  &:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-  }
+const TicketInfo = styled.div`
+  font-size: 14px;
+  color: ${props => props.theme.colors.secondary};
+  margin-bottom: 24px;
 `;
+
+// Sample events data (would typically come from an API or database)
+const eventsData = [
+  {
+    id: 'summer-music-festival-2025',
+    name: 'Summer Music Festival 2025',
+    category: 'Concerts',
+    description: 'Experience the ultimate summer festival featuring top artists and bands from around the globe. This NFT ticket includes premium seating, backstage access, and exclusive merchandise. Join thousands of music lovers for three days of non-stop entertainment in a beautiful outdoor setting.',
+    date: 'Apr 15, 2025',
+    time: '12:00 PM - 11:00 PM',
+    location: 'Central Park, New York',
+    organizer: 'Festival Productions Inc.',
+    image: '/images/summer-festival.jpg',
+    price: 2400, // USD price
+    cryptoPrice: 0.8, // Crypto price
+    cryptoCurrency: 'ETH', // Cryptocurrency type
+    totalTickets: 5000,
+    availableTickets: 2184
+  }
+];
 
 const EventDetailPage = () => {
   const { eventId } = useParams();
-  const [event, setEvent] = useState(null);
-  const [loading, setLoading] = useState(true);
   
-  useEffect(() => {
-    // In a real app, you would fetch the event data from an API
-    // For this example, we'll simulate with static data
-    setTimeout(() => {
-      const mockEvent = {
-        id: eventId,
-        title: 'Summer Music Festival 2025',
-        description: 'Experience the ultimate summer festival featuring top artists and bands from around the globe. This NFT ticket includes premium seating, backstage access, and exclusive merchandise. Join thousands of music lovers for three days of non-stop entertainment in a beautiful outdoor setting.',
-        image: 'https://via.placeholder.com/600x600/292966/CCCCFF?text=Music+Festival',
-        category: 'Concerts',
-        date: 'Apr 15, 2025',
-        time: '12:00 PM - 11:00 PM',
-        price: '0.8 ETH',
-        location: 'Central Park, New York',
-        organizer: 'Festival Productions Inc.',
-        supply: 5000,
-        available: 2184,
-        featured: true,
-      };
-      
-      setEvent(mockEvent);
-      setLoading(false);
-    }, 500);
-  }, [eventId]);
-  
-  if (loading) {
-    return (
-      <PageContainer>
-        <div style={{ textAlign: 'center', padding: '100px 0' }}>
-          Loading event details...
-        </div>
-      </PageContainer>
-    );
-  }
-  
-  if (!event) {
-    return (
-      <PageContainer>
-        <div style={{ textAlign: 'center', padding: '100px 0' }}>
-          Event not found.
-        </div>
-      </PageContainer>
-    );
-  }
+  // In a real app, you would fetch event data based on eventId
+  // For demo, we'll just find it in our sample data
+  const event = eventsData.find(e => e.id === eventId) || eventsData[0]; // Default to first event if not found
   
   return (
-    <PageContainer>
-      <EventGrid>
-        <EventImage src={event.image} />
+    <EventDetailContainer>
+      <EventContent>
+        <EventImage>
+          <img src={event.image || '/placeholder-event.jpg'} alt={event.name} />
+        </EventImage>
         
         <EventInfo>
-          <CategoryBadge>{event.category}</CategoryBadge>
-          <EventTitle>{event.title}</EventTitle>
+          <EventCategory>{event.category}</EventCategory>
+          <EventTitle>{event.name}</EventTitle>
           <EventDescription>{event.description}</EventDescription>
           
-          <EventStats>
-            <StatItem>
-              <StatLabel>Date</StatLabel>
-              <StatValue>{event.date}</StatValue>
-            </StatItem>
-            <StatItem>
-              <StatLabel>Time</StatLabel>
-              <StatValue>{event.time}</StatValue>
-            </StatItem>
-            <StatItem>
-              <StatLabel>Location</StatLabel>
-              <StatValue>{event.location}</StatValue>
-            </StatItem>
-            <StatItem>
-              <StatLabel>Organizer</StatLabel>
-              <StatValue>{event.organizer}</StatValue>
-            </StatItem>
-          </EventStats>
+          <InfoGrid>
+            <InfoBox>
+              <InfoLabel>Date</InfoLabel>
+              <InfoValue>{event.date}</InfoValue>
+            </InfoBox>
+            <InfoBox>
+              <InfoLabel>Time</InfoLabel>
+              <InfoValue>{event.time}</InfoValue>
+            </InfoBox>
+            <InfoBox>
+              <InfoLabel>Location</InfoLabel>
+              <InfoValue>{event.location}</InfoValue>
+            </InfoBox>
+            <InfoBox>
+              <InfoLabel>Organizer</InfoLabel>
+              <InfoValue>{event.organizer}</InfoValue>
+            </InfoBox>
+          </InfoGrid>
           
-          <PriceContainer>
+          <PriceBox>
             <PriceLabel>Floor Price</PriceLabel>
-            <PriceValue>{event.price}</PriceValue>
-          </PriceContainer>
-          
-          <div style={{ marginBottom: '16px', fontSize: '0.9rem', color: '#A3A3CC' }}>
-            {event.available} of {event.supply} tickets available
-          </div>
-          
-          <Button>Purchase Ticket</Button>
+            <PriceValue>{event.cryptoPrice} {event.cryptoCurrency}</PriceValue>
+            <TicketInfo>{event.availableTickets} of {event.totalTickets} tickets available</TicketInfo>
+            
+            {/* Purchase Ticket Button */}
+            <PurchaseTicketButton event={event} />
+          </PriceBox>
         </EventInfo>
-      </EventGrid>
-    </PageContainer>
+      </EventContent>
+    </EventDetailContainer>
   );
 };
 
