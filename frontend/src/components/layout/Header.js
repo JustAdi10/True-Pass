@@ -1,13 +1,20 @@
-// original header
-
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import SearchBar from '../common/SearchBar';
 
+const theme = {
+  colors: {
+    primary: "#3498db",  // Blue color
+    dark: "#2c3e50",     // Dark color for contrast
+  },
+  shadows: {
+    small: "0px 4px 6px rgba(0, 0, 0, 0.1)"
+  }
+};
 
+// Styled Components
 const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
@@ -49,12 +56,12 @@ const NavActions = styled.div`
 
 const Button = styled.button`
   padding: 8px 16px;
-  background-color: ${props => props.primary ? props.theme.colors.primary : 'transparent'};
-  color: ${props => props.primary ? props.theme.colors.dark : 'white'};
+  background-color: ${(props) => (props.primary ? props.theme.colors.primary : "transparent")};
+  color: ${(props) => (props.primary ? props.theme.colors.dark : "white")};
   border-radius: 4px;
   font-weight: 500;
   transition: all 0.2s ease;
-  border: ${props => props.primary ? 'none' : `1px solid ${props.theme.colors.primary}`};
+  border: ${(props) => (props.primary ? "none" : `1px solid ${props.theme.colors.primary}`)};
   
   &:hover {
     opacity: 0.9;
@@ -80,27 +87,46 @@ const IconButton = styled.button`
 `;
 
 const Header = () => {
+  const [account, setAccount] = useState(null);
+
+  const connectWallet = async () => {
+    if (window.ethereum) {
+      try {
+        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+        setAccount(accounts[0]);
+      } catch (error) {
+        console.error("Error connecting to MetaMask:", error);
+      }
+    } else {
+      alert("MetaMask is not installed. Please install it to use this feature.");
+    }
+  };
+
   return (
-    <HeaderContainer>
-      <Link to="/">
-        <Logo>
-          <div className="logo-square">TP</div>
-          <div className="logo-text">TruePass</div>
-        </Logo>
-      </Link>
-      
-      <SearchBar placeholder="Search events, collections, and accounts" />
-      
-      <NavActions>
-        <Button primary>Connect wallet</Button>
-        <IconButton as={Link} to="/cart">
-          <FaShoppingCart size={24} />
-        </IconButton>
-        <IconButton as={Link} to="/profile">
-          <FaUser size={24} />
-        </IconButton>
-      </NavActions>
-    </HeaderContainer>
+    <ThemeProvider theme={theme}>
+      <HeaderContainer>
+        <Link to="/">
+          <Logo>
+            <div className="logo-square">TP</div>
+            <div className="logo-text">TruePass</div>
+          </Logo>
+        </Link>
+        
+        <SearchBar placeholder="Search events, collections, and accounts" />
+        
+        <NavActions>
+          <Button primary onClick={connectWallet}>
+            {account ? `Connected: ${account.slice(0, 6)}...${account.slice(-4)}` : "Connect Wallet"}
+          </Button>
+          <IconButton as={Link} to="/cart">
+            <FaShoppingCart size={24} />
+          </IconButton>
+          <IconButton as={Link} to="/profile">
+            <FaUser size={24} />
+          </IconButton>
+        </NavActions>
+      </HeaderContainer>
+    </ThemeProvider>
   );
 };
 
