@@ -12,3 +12,9 @@ Final	 (04pm) : Deploy on domain.
 3.Cart functionality
 4.Authentication
 5.Mongo Link (events added by host should show on the buyer screen)
+6.QR code
+7.Offline verification
+
+
+Link Metamask --done
+link things to mongo 

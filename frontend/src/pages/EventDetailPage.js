@@ -112,22 +112,70 @@ const TicketInfo = styled.div`
 
 // Sample events data (would typically come from an API or database)
 const eventsData = [
-  {
-    id: 'summer-music-festival-2025',
-    name: 'Summer Music Festival 2025',
-    category: 'Concerts',
-    description: 'Experience the ultimate summer festival featuring top artists and bands from around the globe. This NFT ticket includes premium seating, backstage access, and exclusive merchandise. Join thousands of music lovers for three days of non-stop entertainment in a beautiful outdoor setting.',
-    date: 'Apr 15, 2025',
-    time: '12:00 PM - 11:00 PM',
-    location: 'Central Park, New York',
-    organizer: 'Festival Productions Inc.',
-    image: '/images/summer-festival.jpg',
-    price: 2400, // USD price
-    cryptoPrice: 0.8, // Crypto price
-    cryptoCurrency: 'ETH', // Cryptocurrency type
-    totalTickets: 5000,
-    availableTickets: 2184
-  }
+    {
+      id: 'summer-music-festival-2025',
+      name: 'Summer Music Festival 2025',
+      category: 'Concerts',
+      description: 'Experience the ultimate summer festival featuring top artists and bands from around the globe. This NFT ticket includes premium seating, backstage access, and exclusive merchandise.',
+      date: 'Apr 15, 2025',
+      time: '12:00 PM - 11:00 PM',
+      location: 'Central Park, New York',
+      organizer: 'Festival Productions Inc.',
+      image: '/images/summer-festival.jpg',
+      price: 2400,
+      cryptoPrice: 0.8,
+      cryptoCurrency: 'ETH',
+      totalTickets: 5000,
+      availableTickets: 2184
+    },
+    {
+      id: 'nba-championship-finals-2025',
+      name: 'NBA Championship Finals 2025',
+      category: 'Sports',
+      description: 'Witness the most thrilling basketball showdown of the year! This NFT ticket grants access to courtside seats, VIP lounges, and a meet-and-greet with players.',
+      date: 'Mar 20, 2025',
+      time: '07:30 PM - 10:30 PM',
+      location: 'Staples Center, Los Angeles',
+      organizer: 'NBA Events',
+      image: '/images/nba-finals.jpg',
+      price: 3500,
+      cryptoPrice: 1.2,
+      cryptoCurrency: 'ETH',
+      totalTickets: 20000,
+      availableTickets: 5432
+    },
+    {
+      id: 'neon-night-party-2025',
+      name: 'Neon Night Party 2025',
+      category: 'Parties',
+      description: 'Join us for a high-energy neon night party with electrifying DJs, neon-themed drinks, and an immersive dance floor experience.',
+      date: 'Apr 02, 2025',
+      time: '10:00 PM - 04:00 AM',
+      location: 'Sky Lounge, Miami',
+      organizer: 'Miami Nightlife Group',
+      image: '/images/neon-party.jpg',
+      price: 500,
+      cryptoPrice: 0.5,
+      cryptoCurrency: 'ETH',
+      totalTickets: 1000,
+      availableTickets: 387
+    },
+    {
+      id: 'digital-art-exhibition-2025',
+      name: 'Digital Art Exhibition 2025',
+      category: 'Exhibitions',
+      description: 'Explore the future of digital art with exclusive NFT showcases, virtual reality experiences, and interactive installations.',
+      date: 'May 10, 2025',
+      time: '11:00 AM - 07:00 PM',
+      location: 'Modern Gallery, San Francisco',
+      organizer: 'Future Art Collectors',
+      image: '/images/digital-art.jpg',
+      price: 800,
+      cryptoPrice: 0.3,
+      cryptoCurrency: 'ETH',
+      totalTickets: 1500,
+      availableTickets: 967
+    }
 ];
 
 const EventDetailPage = () => {

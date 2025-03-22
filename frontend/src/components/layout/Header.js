@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+// original header
+
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import SearchBar from '../common/SearchBar';
-import OrgLogin from '../../pages/OrganizerLogin';
-import Login from '../../pages/AttendeeLogin';
-import RoleSelection from '../../pages/RoleSelection';
+
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -49,12 +50,12 @@ const NavActions = styled.div`
 
 const Button = styled.button`
   padding: 8px 16px;
-  background-color: ${props => props.primary ? props.theme.colors.primary : 'transparent'};
-  color: ${props => props.primary ? props.theme.colors.dark : 'white'};
+  background-color: ${(props) => (props.primary ? props.theme.colors.primary : "transparent")};
+  color: ${(props) => (props.primary ? props.theme.colors.dark : "white")};
   border-radius: 4px;
   font-weight: 500;
   transition: all 0.2s ease;
-  border: ${props => props.primary ? 'none' : `1px solid ${props.theme.colors.primary}`};
+  border: ${(props) => (props.primary ? "none" : `1px solid ${props.theme.colors.primary}`)};
   
   &:hover {
     opacity: 0.9;
@@ -183,14 +184,6 @@ const StyledLink = styled(Link)`
 `;
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const handleLogin = () => {
-    setMenuOpen(false);
-    navigate('/RoleSelection');
-  };
-
   return (
     <HeaderContainer>
       <Link to="/">
@@ -207,18 +200,9 @@ const Header = () => {
         <IconButton as={Link} to="/cart">
           <FaShoppingCart size={24} />
         </IconButton>
-        <IconButton onClick={() => setMenuOpen(!menuOpen)}>
+        <IconButton as={Link} to="/profile">
           <FaUser size={24} />
         </IconButton>
-        
-        {/* Animated Dropdown menu */}
-        {menuOpen && (
-          <DropdownMenu open={menuOpen}>
-            <StyledLink to="/profile">Profile</StyledLink>
-            <StyledLink to="/settings">Settings</StyledLink>
-            <DropdownItem onClick={handleLogin}>Login</DropdownItem>
-          </DropdownMenu>
-        )}
       </NavActions>
     </HeaderContainer>
   );
