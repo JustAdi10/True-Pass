@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import Hero from '../components/sections/Hero';
 import CategoryTabs from '../components/sections/CategoryTabs';
 import FeaturedEvents from '../components/sections/FeaturedEvents';
+import ConcertEvents from '../components/sections/ConcertsEvents';
+import PartiesEvents from '../components/sections/PartiesEvents';
+import SportsEvents from '../components/sections/SportsEvents';
 
 const HomeContainer = styled.div`
   min-height: calc(100vh - 64px);
@@ -14,6 +17,9 @@ const HomePage = () => {
       <Hero />
       <CategoryTabs />
       <FeaturedEvents title="Featured Events" />
+      <ConcertEvents title="Concerts"/>
+      <PartiesEvents title="Parties"/>
+      <SportsEvents title="Sports"/>
     </HomeContainer>
   );
 };

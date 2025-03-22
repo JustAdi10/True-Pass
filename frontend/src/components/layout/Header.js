@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import SearchBar from '../common/SearchBar';
 
 const HeaderContainer = styled.header`
@@ -57,6 +58,23 @@ const Button = styled.button`
   }
 `;
 
+const IconButton = styled.button`
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    opacity: 0.7;
+    transform: translateY(-1px);
+  }
+`;
+
 const Header = () => {
   return (
     <HeaderContainer>
@@ -70,8 +88,13 @@ const Header = () => {
       <SearchBar placeholder="Search events, collections, and accounts" />
       
       <NavActions>
-        <Button>Host</Button>
         <Button primary>Connect wallet</Button>
+        <IconButton as={Link} to="/cart">
+          <FaShoppingCart size={24} />
+        </IconButton>
+        <IconButton as={Link} to="/profile">
+          <FaUser size={24} />
+        </IconButton>
       </NavActions>
     </HeaderContainer>
   );

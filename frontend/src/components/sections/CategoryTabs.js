@@ -37,11 +37,8 @@ const CategoryTabs = () => {
     { id: 'all', name: 'All' },
     { id: 'concerts', name: 'Concerts' },
     { id: 'parties', name: 'Parties' },
-    { id: 'sports', name: 'Sports' },
-    { id: 'festivals', name: 'Festivals' },
-    { id: 'theater', name: 'Theater' },
-    { id: 'exhibitions', name: 'Exhibitions' },
-    { id: 'conferences', name: 'Conferences' },
+    { id: 'sports', name: 'Sports' }
+    
   ];
   
   return (
