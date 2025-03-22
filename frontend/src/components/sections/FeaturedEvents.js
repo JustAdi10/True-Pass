@@ -40,6 +40,7 @@ const ViewAllLink = styled.a`
   }
 `;
 
+
 const EventsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -104,7 +105,7 @@ const FeaturedEvents = ({ title }) => {
     <SectionContainer>
       <SectionHeader>
         <SectionTitle>{title}</SectionTitle>
-        <ViewAllLink href="#">View All</ViewAllLink>
+        <ViewAllLink href="https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">View All</ViewAllLink>
       </SectionHeader>
       
       <EventsGrid>

@@ -8,6 +8,7 @@ const CartContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px 24px;
+  
 `;
 
 const CartHeader = styled.div`
@@ -15,6 +16,7 @@ const CartHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 32px;
+  
 `;
 
 const BackButton = styled(Link)`
@@ -34,6 +36,7 @@ const CartTitle = styled.h1`
   font-size: 28px;
   font-weight: bold;
   color: ${props => props.theme.colors.text};
+  
 `;
 
 const EmptyCart = styled.div`
@@ -53,6 +56,7 @@ const EmptyCartMessage = styled.p`
 
 const CartList = styled.div`
   margin-bottom: 32px;
+  
 `;
 
 const CartItem = styled.div`
@@ -60,10 +64,12 @@ const CartItem = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 16px;
+  
   border-bottom: 1px solid ${props => props.theme.colors.border};
   
   &:last-child {
     border-bottom: none;
+    color: orange ${props => props.theme.colors.text};
   }
 `;
 
@@ -78,7 +84,7 @@ const ItemImage = styled.div`
   height: 80px;
   border-radius: 8px;
   background-color: ${props => props.theme.colors.background};
-  overflow: hidden;
+  overflow: ;
   
   img {
     width: 100%;
@@ -117,14 +123,16 @@ const ItemActions = styled.div`
 `;
 
 const DeleteButton = styled.button`
-  background: none;
-  border: none;
+  background: white;
+    border: 2px solid ${props => props.theme.colors.border};
   color: ${props => props.theme.colors.danger};
+  width: 35px;
+  height: 35px;
   cursor: pointer;
   transition: all 0.2s ease;
   
   &:hover {
-    opacity: 0.7;
+    opacity: 0.8;
   }
 `;
 
@@ -135,11 +143,11 @@ const QuantityControl = styled.div`
 `;
 
 const QuantityButton = styled.button`
-  background: none;
-  border: 1px solid ${props => props.theme.colors.border};
+  background: white ;
+  border: 2px solid ${props => props.theme.colors.border};
   border-radius: 4px;
-  width: 28px;
-  height: 28px;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,8 +165,8 @@ const QuantityButton = styled.button`
 `;
 
 const QuantityText = styled.span`
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 550;
   min-width: 24px;
   text-align: center;
 `;
@@ -166,13 +174,14 @@ const QuantityText = styled.span`
 const CartSummary = styled.div`
   background-color: ${props => props.theme.colors.backgroundLight};
   border-radius: 8px;
+  color: orange ${props => props.theme.colors.text};
   padding: 24px;
 `;
 
 const SummaryTitle = styled.h2`
   font-size: 20px;
   font-weight: 600;
-  color: ${props => props.theme.colors.text};
+  color: orange ${props => props.theme.colors.text};
   margin-bottom: 16px;
 `;
 
@@ -196,13 +205,14 @@ const SummaryLabel = styled.span`
 const SummaryValue = styled.span`
   font-size: 16px;
   font-weight: ${props => props.bold ? '600' : '400'};
-  color: ${props => props.theme.colors.text};
+  color: white ${props => props.theme.colors.text};
 `;
 
 const TotalItem = styled(SummaryItem)`
   font-weight: 600;
   font-size: 18px;
   margin-top: 16px;
+  
 `;
 
 const CheckoutButton = styled.button`
@@ -428,13 +438,13 @@ const CartPage = () => {
               <CartItem key={item.id}>
                 <ItemDetails>
                   <ItemImage>
-                    <img src={item.image || '/placeholder-event.jpg'} alt={item.name} />
+                    <img src={item.image || "./images/fest_1.jpeg"} alt={item.name} />
                   </ItemImage>
                   <ItemInfo>
                     <ItemName>{item.name}</ItemName>
                     <ItemMeta>{item.date || 'No date'} • {item.venue || 'No venue'}</ItemMeta>
                     {item.cryptoPrice && (
-                      <ItemMeta>Price: {item.cryptoPrice} {item.cryptoCurrency || 'ETH'}</ItemMeta>
+                      <ItemMeta>Price: {item.cryptoPrice} {item.cryptoCurrency || 'USD'}</ItemMeta>
                     )}
                   </ItemInfo>
                 </ItemDetails>
@@ -453,7 +463,7 @@ const CartPage = () => {
                   </QuantityControl>
                   <ItemPrice>
                     {item.cryptoPrice 
-                      ? `${(item.cryptoPrice * (item.quantity || 1)).toFixed(2)} ${item.cryptoCurrency || 'ETH'}`
+                      ? `${(item.cryptoPrice * (item.quantity || 1)).toFixed(2)} ${item.cryptoCurrency || 'USD'}`
                       : `$${((item.price || 0) * (item.quantity || 1)).toFixed(2)}`
                     }
                   </ItemPrice>
@@ -471,7 +481,7 @@ const CartPage = () => {
               <SummaryLabel>Subtotal</SummaryLabel>
               <SummaryValue>
                 {cart[0]?.cryptoPrice 
-                  ? `${subtotal.toFixed(2)} ${cart[0]?.cryptoCurrency || 'ETH'}`
+                  ? `${subtotal.toFixed(2)} ${cart[0]?.cryptoCurrency || 'USD'}`
                   : `$${subtotal.toFixed(2)}`
                 }
               </SummaryValue>
@@ -480,7 +490,7 @@ const CartPage = () => {
               <SummaryLabel>Service Fee (5%)</SummaryLabel>
               <SummaryValue>
                 {cart[0]?.cryptoPrice 
-                  ? `${serviceFee.toFixed(2)} ${cart[0]?.cryptoCurrency || 'ETH'}`
+                  ? `${serviceFee.toFixed(2)} ${cart[0]?.cryptoCurrency || 'USD'}`
                   : `$${serviceFee.toFixed(2)}`
                 }
               </SummaryValue>
@@ -489,7 +499,7 @@ const CartPage = () => {
               <SummaryLabel>Total</SummaryLabel>
               <SummaryValue bold>
                 {cart[0]?.cryptoPrice 
-                  ? `${total.toFixed(2)} ${cart[0]?.cryptoCurrency || 'ETH'}`
+                  ? `${total.toFixed(2)} ${cart[0]?.cryptoCurrency || 'USD'}`
                   : `$${total.toFixed(2)}`
                 }
               </SummaryValue>
