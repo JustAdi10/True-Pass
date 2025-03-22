@@ -1,12 +1,11 @@
-// original header
-
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import SearchBar from '../common/SearchBar';
-
+import OrgLogin from '../../pages/OrganizerLogin';
+import Login from '../../pages/AttendeeLogin';
+import RoleSelection from '../../pages/RoleSelection';
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -45,6 +44,7 @@ const NavActions = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+  position: relative;
 `;
 
 const Button = styled.button`
@@ -72,6 +72,7 @@ const IconButton = styled.button`
   justify-content: center;
   padding: 8px;
   transition: all 0.2s ease;
+  position: relative;
   
   &:hover {
     opacity: 0.7;
@@ -79,7 +80,33 @@ const IconButton = styled.button`
   }
 `;
 
+const DropdownMenu = styled.div`
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: white;
+  box-shadow: ${props => props.theme.shadows.medium};
+  border-radius: 4px;
+  overflow: hidden;
+  display: ${props => (props.open ? 'block' : 'none')};
+  z-index: 10;
+`;
+
+const DropdownItem = styled(Link)`
+  display: block;
+  padding: 10px 16px;
+  color: black;
+  text-decoration: none;
+  transition: background 0.2s;
+  
+  &:hover {
+    background: ${props => props.theme.colors.lightGray};
+  }
+`;
+
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <HeaderContainer>
       <Link to="/">
@@ -96,9 +123,13 @@ const Header = () => {
         <IconButton as={Link} to="/cart">
           <FaShoppingCart size={24} />
         </IconButton>
-        <IconButton as={Link} to="/profile">
+        <IconButton onClick={() => setMenuOpen(!menuOpen)}>
           <FaUser size={24} />
         </IconButton>
+        <DropdownMenu open={menuOpen}>
+          <DropdownItem to='OrgLogin'>Organizer Login</DropdownItem>
+          <DropdownItem to="Login">Attendee Login</DropdownItem>
+        </DropdownMenu>
       </NavActions>
     </HeaderContainer>
   );
