@@ -13,6 +13,7 @@ import { theme } from './styles/theme';
 import CartPage from "./pages/CartPage"; 
 import OrgLogin from './pages/OrganizerLogin';
 import Login from './pages/AttendeeLogin';
+import RoleSelection from './pages/RoleSelection';
 
 
 
