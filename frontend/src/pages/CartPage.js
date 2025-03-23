@@ -389,7 +389,7 @@ export const PurchaseTicketButton = ({ event }) => {
       style={{
         width: '100%',
         padding: '14px',
-        backgroundColor: '#6c5ce7', // Use your theme color
+        backgroundColor: '#D2691E', // Use your theme color
         color: 'white',
         border: 'none',
         borderRadius: '4px',

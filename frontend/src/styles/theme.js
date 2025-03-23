@@ -1,13 +1,12 @@
 export const theme = {
-    colors: {
-      primary: '#CCCCFF',
-      secondary: '#A3A3CC',
-      tertiary: '#5C5C99',
-      dark: '#292966',
-      white: '#FFFFFF',
-      black: '#000000',
-      overlay: 'rgba(41, 41, 102, 0.8)',
-    },
+  colors: {
+    primary: '#D2691E',       // Chocolate for buttons
+    secondary: '#F4A460',     // Sandy brown for button hover
+    tertiary: '#000000',          // Rich black for background
+    white: '#FFFFFF',         // White for text
+    black: '#000000',         // Pure black if needed
+    overlay: 'rgba(0, 0, 0, 0.8)', // Dark overlay that matches the new scheme
+  },
     fonts: {
       heading: "'Inter', sans-serif",
       body: "'Inter', sans-serif",
