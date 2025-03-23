@@ -439,7 +439,7 @@ const CartPage = () => {
       {cart.length === 0 ? (
         <EmptyCart>
           <EmptyCartMessage>Your cart is empty</EmptyCartMessage>
-          <ContinueShoppingButton to="/home">Browse Events</ContinueShoppingButton>
+          <ContinueShoppingButton to="/">Browse Events</ContinueShoppingButton>
         </EmptyCart>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '32px' }}>
@@ -516,8 +516,8 @@ const CartPage = () => {
             </TotalItem>
             
             <ButtonsContainer>
-              <CheckoutButton onClick={handleCheckout}>Proceed to Checkout</CheckoutButton>
-              <ContinueShoppingButton to="/home">Continue Shopping</ContinueShoppingButton>
+              <CheckoutButton onClick={() => window.location.href = '/payment.html'}>Proceed to Checkout</CheckoutButton>
+              <ContinueShoppingButton to="/">Continue Shopping</ContinueShoppingButton>
             </ButtonsContainer>
           </CartSummary>
         </div>
