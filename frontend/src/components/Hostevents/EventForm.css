@@ -1,0 +1,30 @@
+.event-form-container {
+    background-color: var(--background-card);
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .event-form {
+    width: 100%;
+  }
+  
+  .form-notice {
+    font-size: 0.8rem;
+    margin: 1.5rem 0;
+    color: var(--text-dim);
+    text-align: center;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
