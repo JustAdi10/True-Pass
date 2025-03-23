@@ -216,7 +216,7 @@ const SearchBar = ({ placeholder = "Search events..." }) => {
   
   // Sample event data - replace with your actual events
   const events = [
-    { id: 1, title: "Badminton World Tour ", date: "2025-04-15", location: "Singapore Badminton Stadium,", path: "/event/6" },
+    { id: 1, title: "Badminton World Tour ", date: "2025-04-15", location: "Singapore Badminton Stadium,", path: "/event/5" },
     { id: 2, title: "Championship Finals", date: "2025-05-22", location: "National Stadium", path: "/event/2" },
     { id: 3, title: "Neon Night Party", date: "2025-04-28", location: "Club Midnight", path: "/event/3" },
     { id: 4, title: "Digital Art Exhibition", date: "2025-07-10", location: "Modern Gallery", path: "/event/4" },
