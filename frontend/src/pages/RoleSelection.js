@@ -15,7 +15,7 @@ const RoleSelection = () => {
   return (
     <div className="role-selection-container">
       <div className={`header-content ${loaded ? 'fade-in' : ''}`}>
-        <h1 >Welcome to TruePass</h1>
+        <h1>Welcome to TruePass</h1>
         <p>Please select how you want to continue</p>
       </div>
       
@@ -25,8 +25,7 @@ const RoleSelection = () => {
           <h2>Event Organizer</h2>
           <p>Create and manage your events</p>
           <div className="role-buttons">
-            <Link to="/organizer/login" className="role-btn login-btn">Login</Link>
-            <Link to="/organizer/signup" className="role-btn signup-btn">Sign Up</Link>
+            <Link to="/organizer/login" className="role-btn login-btn">Let's Go!</Link>
           </div>
         </div>
         
@@ -35,8 +34,7 @@ const RoleSelection = () => {
           <h2>Event Attendee</h2>
           <p>Discover and book event tickets</p>
           <div className="role-buttons">
-            <Link to="/attendee/login" className="role-btn login-btn">Login</Link>
-            <Link to="/attendee/signup" className="role-btn signup-btn">Sign Up</Link>
+            <Link to="/attendee/login" className="role-btn login-btn">Let's Go!</Link>
           </div>
         </div>
       </div>
@@ -155,44 +153,31 @@ const RoleSelection = () => {
         /* Button Styles */
         .role-buttons {
           display: flex;
-          gap: 1rem;
+          justify-content: center;
           margin-top: 1.5rem;
           width: 100%;
         }
         
         .role-btn {
-          flex: 1;
           padding: 0.75rem 1.5rem;
           border-radius: 8px;
           font-weight: 600;
           text-decoration: none;
           text-align: center;
           transition: all 0.3s ease;
+          width: 80%;
         }
         
         .login-btn {
-          background-color: transparent;
-          border: 2px solid currentColor;
-        }
-        
-        .organizer-card .login-btn {
-          color: #5f27cd;
-        }
-        
-        .attendee-card .login-btn {
-          color: #ff6b6b;
-        }
-        
-        .signup-btn {
           color: white;
         }
         
-        .organizer-card .signup-btn {
+        .organizer-card .login-btn {
           background-color: #5f27cd;
           border: 2px solid #5f27cd;
         }
         
-        .attendee-card .signup-btn {
+        .attendee-card .login-btn {
           background-color: #ff6b6b;
           border: 2px solid #ff6b6b;
         }
@@ -202,12 +187,12 @@ const RoleSelection = () => {
           box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .organizer-card .signup-btn:hover {
+        .organizer-card .login-btn:hover {
           background-color: #4c1fa8;
           border-color: #4c1fa8;
         }
         
-        .attendee-card .signup-btn:hover {
+        .attendee-card .login-btn:hover {
           background-color: #ff5252;
           border-color: #ff5252;
         }

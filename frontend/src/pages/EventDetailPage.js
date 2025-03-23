@@ -115,12 +115,12 @@ const eventsData = [
     {
       id: 1,
       EventTitle:'summer-music-festival-2025',
-      name: 'Summer Music Festival 2025',
+      name: 'Coldplay India Tour 2025',
       category: 'Concerts',
       description: 'Experience the ultimate summer festival featuring top artists and bands from around the globe. This NFT ticket includes premium seating, backstage access, and exclusive merchandise.',
       date: 'Apr 15, 2025',
       time: '12:00 PM - 11:00 PM',
-      location: 'Central Park, New York',
+      location: 'Mumbai, India',
       organizer: 'Festival Productions Inc.',
       image: 'https://www.columbusdirect.com/media/1901/music-festival-2012.jpg?width=800',
       price: 0.01,
@@ -140,8 +140,8 @@ const eventsData = [
       location: 'Staples Center, Los Angeles',
       organizer: 'NBA Events',
       image: '/images/nba-finals.jpg',
-      price: 0.01,
-      cryptoPrice: 0.01,
+      price: 3500,
+      cryptoPrice: 1.2,
       cryptoCurrency: 'ETH',
       totalTickets: 20000,
       availableTickets: 5432
@@ -157,14 +157,14 @@ const eventsData = [
       location: 'Sky Lounge, Miami',
       organizer: 'Miami Nightlife Group',
       image: '/images/neon-party.jpg',
-      price: 0.01,
-      cryptoPrice: 0.01,
+      price: 500,
+      cryptoPrice: 0.5,
       cryptoCurrency: 'ETH',
       totalTickets: 1000,
       availableTickets: 387
     },
     {
-      id:4,
+      id: 4,
       EventTitle: 'digital-art-exhibition-2025',
       name: 'Digital Art Exhibition 2025',
       category: 'Exhibitions',
@@ -174,8 +174,8 @@ const eventsData = [
       location: 'Modern Gallery, San Francisco',
       organizer: 'Future Art Collectors',
       image: '../images/fest_1.jpeg',
-      price: 0.01,
-      cryptoPrice: 0.01,
+      price: 800,
+      cryptoPrice: 0.3,
       cryptoCurrency: 'ETH',
       totalTickets: 1500,
       availableTickets: 967
@@ -185,9 +185,17 @@ const eventsData = [
 const EventDetailPage = () => {
   const { eventId } = useParams();
   
-  // In a real app, you would fetch event data based on eventId
-  // For demo, we'll just find it in our sample data
-  const event = eventsData.find(e => e.id === eventId) || eventsData[0]; // Default to first event if not found
+  // Convert eventId string to number and find the matching event
+  const parsedEventId = parseInt(eventId, 10);
+  const event = eventsData.find(e => e.id === parsedEventId) || eventsData[0];
+  
+  // Alternative approach: You could also look up by EventTitle if that's what you're using in your routes
+  // const event = eventsData.find(e => e.EventTitle === eventId) || eventsData[0];
+  
+  // For debugging - remove this in production
+  console.log('Event ID from URL:', eventId);
+  console.log('Parsed Event ID:', parsedEventId);
+  console.log('Found event:', event);
   
   return (
     <EventDetailContainer>
