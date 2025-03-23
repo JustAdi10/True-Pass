@@ -9,10 +9,10 @@ import CategoryPage from './pages/CategoryPage';
 import EventDetailPage from './pages/EventDetailPage';
 import GlobalStyle from './styles/GlobalStyle';
 import { theme } from './styles/theme';
-import CartPage from "./pages/CartPage"; 
-//import CartContextObj from './context/cartContext';
-//import OrgLogin from './pages/OrganizerLogin';
-
+import CartPage from "./pages/CartPage";
+import RoleSelection from './pages/RoleSelection';
+import AttendeeLogin from './pages/AttendeeLogin'; // Import AttendeeLogin
+import OrganizerLogin from './pages/OrganizerLogin'; // Import OrganizerLogin
 
 function App() {
   useEffect(() => {
@@ -37,11 +37,14 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<RoleSelection />} /> {/* Default route */}
+          <Route path="/home" element={<HomePage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/event/:eventId" element={<EventDetailPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/attendee/login" element={<AttendeeLogin />} /> {/* Attendee Login route */}
+          <Route path="/organizer/login" element={<OrganizerLogin />} /> {/* Organizer Login route */}
         </Routes>
         <Footer />
       </Router>
