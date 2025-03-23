@@ -11,8 +11,8 @@ import GlobalStyle from './styles/GlobalStyle';
 import { theme } from './styles/theme';
 import CartPage from "./pages/CartPage";
 import RoleSelection from './pages/RoleSelection';
-import AttendeeLogin from './pages/AttendeeLogin';
-import OrganizerLogin from './pages/OrganizerLogin';
+import AttendeeLogin from './pages/AttendeeLogin'; // Import AttendeeLogin
+import OrganizerLogin from './pages/OrganizerLogin'; // Import OrganizerLogin
 
 function App() {
   useEffect(() => {
@@ -43,8 +43,8 @@ function App() {
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/event/:eventId" element={<EventDetailPage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/attendee/login" element={<AttendeeLogin />} />
-          <Route path="/organizer/login" element={<OrganizerLogin />} />
+          <Route path="/attendee/login" element={<AttendeeLogin />} /> {/* Attendee Login route */}
+          <Route path="/organizer/login" element={<OrganizerLogin />} /> {/* Organizer Login route */}
         </Routes>
         <Footer />
       </Router>

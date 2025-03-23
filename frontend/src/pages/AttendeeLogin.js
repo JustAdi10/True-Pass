@@ -63,6 +63,9 @@ const Login = () => {
             <label>confirm password</label>
           </div>
           <button type="submit" className="btn">sign up</button>
+          <link to="/login">
+            
+          </link>
           <div className="link">
             <p>You already have an account? <span onClick={toggleSignIn} className="signin-link">sign in</span></p>
           </div>

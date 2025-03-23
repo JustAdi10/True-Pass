@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const HeroContainer = styled.div`
   text-align: center;
@@ -55,7 +56,9 @@ const Hero = () => {
         The ultimate marketplace for digital event tickets and experiences powered by blockchain technology
       </HeroSubtitle>
       <ButtonGroup>
-        <Button primary>Explore Events</Button>
+        <Link to="/events">
+          <Button primary>Explore Events</Button>
+        </Link>
         <Button>Learn More</Button>
       </ButtonGroup>
     </HeroContainer>
