@@ -113,7 +113,8 @@ const TicketInfo = styled.div`
 // Sample events data (would typically come from an API or database)
 const eventsData = [
     {
-      id: 'summer-music-festival-2025',
+      id: 1,
+      EventTitle:'summer-music-festival-2025',
       name: 'Summer Music Festival 2025',
       category: 'Concerts',
       description: 'Experience the ultimate summer festival featuring top artists and bands from around the globe. This NFT ticket includes premium seating, backstage access, and exclusive merchandise.',
@@ -129,7 +130,8 @@ const eventsData = [
       availableTickets: 2184
     },
     {
-      id: 'nba-championship-finals-2025',
+      id: 2,
+      EventTitle: 'nba-championship-finals-2025',
       name: 'NBA Championship Finals 2025',
       category: 'Sports',
       description: 'Witness the most thrilling basketball showdown of the year! This NFT ticket grants access to courtside seats, VIP lounges, and a meet-and-greet with players.',
@@ -145,7 +147,8 @@ const eventsData = [
       availableTickets: 5432
     },
     {
-      id: 'neon-night-party-2025',
+      id: 3,
+      EventTitle: 'neon-night-party-2025',
       name: 'Neon Night Party 2025',
       category: 'Parties',
       description: 'Join us for a high-energy neon night party with electrifying DJs, neon-themed drinks, and an immersive dance floor experience.',
@@ -161,7 +164,8 @@ const eventsData = [
       availableTickets: 387
     },
     {
-      id: 'digital-art-exhibition-2025',
+      id:4,
+      EventTitle: 'digital-art-exhibition-2025',
       name: 'Digital Art Exhibition 2025',
       category: 'Exhibitions',
       description: 'Explore the future of digital art with exclusive NFT showcases, virtual reality experiences, and interactive installations.',
@@ -169,7 +173,7 @@ const eventsData = [
       time: '11:00 AM - 07:00 PM',
       location: 'Modern Gallery, San Francisco',
       organizer: 'Future Art Collectors',
-      image: '/images/digital-art.jpg',
+      image: '../images/fest_1.jpeg',
       price: 800,
       cryptoPrice: 0.3,
       cryptoCurrency: 'ETH',

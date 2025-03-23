@@ -105,7 +105,7 @@ const FeaturedEvents = ({ title }) => {
     <SectionContainer>
       <SectionHeader>
         <SectionTitle>{title}</SectionTitle>
-        <ViewAllLink href="https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">View All</ViewAllLink>
+        <ViewAllLink href="#">View All</ViewAllLink>
       </SectionHeader>
       
       <EventsGrid>
