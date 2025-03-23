@@ -28,7 +28,7 @@ function App() {
 
     // Inject BotPress scripts
     loadScript("https://cdn.botpress.cloud/webchat/v2.2/inject.js");
-    loadScript("https://files.bpcontent.cloud/2025/03/09/14/20250309140752-2BXBGDP5.js");
+    loadScript("https://files.bpcontent.cloud/2025/03/22/16/20250322163818-GEG8L1FS.js");
   }, []); // Runs only once when the component mounts
 
   return (
