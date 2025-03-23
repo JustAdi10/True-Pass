@@ -50,31 +50,6 @@ const PartiesEvents = ({ title }) => {
   // Sample event data
   const events = [
     {
-      id: 1,
-      title: 'Summer Music Festival 2025',
-      description: 'Featuring top artists and bands',
-      image: 'https://www.columbusdirect.com/media/1901/music-festival-2012.jpg?width=800',
-      category: 'Concerts',
-      date: 'Apr 15, 2025',
-      price: '0.8 ETH',
-      location: 'Central Park, New York',
-      supply: 5000,
-      featured: true,
-    },
-    {
-      id: 2,
-      title: 'Championship Finals',
-      description: 'Season finale basketball championship',
-      image: 'https://wtop.com/wp-content/uploads/2024/06/NBA_Finals_Basketball_58619-1880x1254.jpg',
-      category: 'Sports',
-      date: 'Mar 20, 2025',
-      price: '1.2 ETH',
-      location: 'Stadium Arena, Los Angeles',
-      supply: 3000,
-      featured: false,
-      live: true
-    },
-    {
       id: 3,
       title: 'Neon Night Party',
       description: 'The ultimate VIP clubbing experience',
@@ -84,18 +59,6 @@ const PartiesEvents = ({ title }) => {
       price: '0.01 ETH',
       location: 'Sky Lounge, Miami',
       supply: 300,
-      featured: false,
-    },
-    {
-      id: 4,
-      title: 'Digital Art Exhibition',
-      description: 'Showcasing the future of digital art',
-      image: 'https://callforcurators.com/wp-content/uploads/2024/01/Interactive-Exhibition-Design-course_List.png',
-      category: 'Exhibitions',
-      date: 'May 10, 2025',
-      price: '0.3 ETH',
-      location: 'Modern Gallery, San Francisco',
-      supply: 1000,
       featured: false,
     },
   ];

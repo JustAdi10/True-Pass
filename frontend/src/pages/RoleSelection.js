@@ -12,6 +12,7 @@ const RoleSelection = () => {
     setLoaded(true);
   }, []);
 
+
   return (
     <div className="role-selection-container">
       <div className={`header-content ${loaded ? 'fade-in' : ''}`}>

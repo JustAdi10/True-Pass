@@ -59,7 +59,9 @@ const Hero = () => {
         <Link to="/events">
           <Button primary>Explore Events</Button>
         </Link>
-        <Button>Learn More</Button>
+        
+        <Button >Learn More</Button>
+        
       </ButtonGroup>
     </HeroContainer>
   );

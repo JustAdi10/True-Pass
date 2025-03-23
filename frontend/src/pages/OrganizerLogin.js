@@ -26,22 +26,27 @@ const OrgLogin = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     // Perform login logic here (e.g., API call)
-    // On successful login, redirect to HomePage
-    navigate("/home");
+    
+    // Change this line to redirect to host.html instead of /home
+    window.location.href = '/host.html';
+    // Remove or comment out the React Router navigation 
+    // navigate("/home");
   };
 
   const handleSignUp = (e) => {
     e.preventDefault();
     // Perform sign-up logic here (e.g., API call)
-    // On successful sign-up, redirect to HomePage
-    navigate("/home");
+    // After successful sign-up, redirect to host.html
+    window.location.href = '/host.html';
+    // Remove or comment out the React Router navigation
+    // navigate("/home");
   };
 
   return (
     <div className={`wrapper ${animationClass}`}>
       <div className="form-container sign-up">
         <form onSubmit={handleSignUp}>
-          <h2>Sign up as<br /> an Organizer!</h2>
+          <h2><br/>Sign up as<br /> an Organizer!</h2>
           <div className="form-group">
             <input type="text" required />
             <FontAwesomeIcon icon={faUser} className="icon" />
@@ -346,4 +351,3 @@ const OrgLogin = () => {
 };
 
 export default OrgLogin;
-
