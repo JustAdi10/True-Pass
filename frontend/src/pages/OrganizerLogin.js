@@ -26,15 +26,20 @@ const OrgLogin = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     // Perform login logic here (e.g., API call)
-    // On successful login, redirect to HomePage
-    navigate("../frontend/HostPage");
+    
+    // Change this line to redirect to host.html instead of /home
+    window.location.href = '/host.html';
+    // Remove or comment out the React Router navigation 
+    // navigate("/home");
   };
 
   const handleSignUp = (e) => {
     e.preventDefault();
     // Perform sign-up logic here (e.g., API call)
-    // On successful sign-up, redirect to HomePage
-    navigate("../frontend/HostPage");
+    // After successful sign-up, redirect to host.html
+    window.location.href = '/host.html';
+    // Remove or comment out the React Router navigation
+    // navigate("/home");
   };
 
   return (
