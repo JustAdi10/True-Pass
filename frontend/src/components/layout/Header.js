@@ -6,6 +6,7 @@ import SearchBar from '../common/SearchBar';
 import OrgLogin from '../../pages/OrganizerLogin';
 import Login from '../../pages/AttendeeLogin';
 import RoleSelection from '../../pages/RoleSelection';
+import ProfilePage from '../../pages/ProfilePage';
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -214,7 +215,7 @@ const Header = () => {
         {/* Animated Dropdown menu */}
         {menuOpen && (
           <DropdownMenu open={menuOpen}>
-            <StyledLink to="/profile">Profile</StyledLink>
+            <StyledLink to="/ProfilePage">Profile</StyledLink>
             <StyledLink to="/settings">Settings</StyledLink>
             <DropdownItem onClick={handleLogin}>Login</DropdownItem>
           </DropdownMenu>

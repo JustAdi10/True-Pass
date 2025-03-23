@@ -13,6 +13,7 @@ import CartPage from "./pages/CartPage";
 import RoleSelection from './pages/RoleSelection';
 import AttendeeLogin from './pages/AttendeeLogin'; // Import AttendeeLogin
 import OrganizerLogin from './pages/OrganizerLogin'; // Import OrganizerLogin
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   useEffect(() => {
@@ -45,6 +46,7 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/attendee/login" element={<AttendeeLogin />} /> {/* Attendee Login route */}
           <Route path="/organizer/login" element={<OrganizerLogin />} /> {/* Organizer Login route */}
+          <Route path="/profilepage" element={<ProfilePage/>} />
         </Routes>
         <Footer />
       </Router>

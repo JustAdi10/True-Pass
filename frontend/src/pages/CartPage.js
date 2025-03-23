@@ -410,7 +410,7 @@ const CartPage = () => {
   
   // Calculate cart totals
   const subtotal = cart.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0);
-  const serviceFee = subtotal * 0.05; // 5% service fee
+  const serviceFee = subtotal * 0.005; // 5% service fee
   const total = subtotal + serviceFee;
   
   // Calculate total number of items
