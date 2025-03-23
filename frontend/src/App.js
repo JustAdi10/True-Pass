@@ -11,7 +11,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import { theme } from './styles/theme';
 import CartPage from "./pages/CartPage"; 
 //import CartContextObj from './context/cartContext';
-
+//import OrgLogin from './pages/OrganizerLogin';
 
 
 function App() {
@@ -42,8 +42,6 @@ function App() {
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/event/:eventId" element={<EventDetailPage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/organizer/login" element={<OrgLogin />} />
-          <Route path="/attendee/login" element={<Login />} />
         </Routes>
         <Footer />
       </Router>

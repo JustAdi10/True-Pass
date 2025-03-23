@@ -6,6 +6,7 @@ import FeaturedEvents from '../components/sections/FeaturedEvents';
 import ConcertEvents from '../components/sections/ConcertsEvents';
 import PartiesEvents from '../components/sections/PartiesEvents';
 import SportsEvents from '../components/sections/SportsEvents';
+import OrgLogin from './OrganizerLogin';
 
 
 
