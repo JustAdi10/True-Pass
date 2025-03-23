@@ -3,7 +3,7 @@ Review 2 (08am) : Full stack application -> Finish a major chunk of frontend and
 Review 3 (12pm) : Project completed for the most part, bug fixes and UX improvements
 Final	 (04pm) : Deploy on domain.
 
-
+aa
 1.Landing Page
 2.Login/Signup page
 	For buyer
@@ -12,3 +12,9 @@ Final	 (04pm) : Deploy on domain.
 3.Cart functionality
 4.Authentication
 5.Mongo Link (events added by host should show on the buyer screen)
+6.QR code
+7.Offline verification
+
+
+Link Metamask --done
+link things to mongo 
