@@ -123,8 +123,8 @@ const eventsData = [
       location: 'Central Park, New York',
       organizer: 'Festival Productions Inc.',
       image: 'https://www.columbusdirect.com/media/1901/music-festival-2012.jpg?width=800',
-      price: 2400,
-      cryptoPrice: 0.8,
+      price: 0.01,
+      cryptoPrice: 0.01,
       cryptoCurrency: 'ETH',
       totalTickets: 5000,
       availableTickets: 2184
@@ -140,8 +140,8 @@ const eventsData = [
       location: 'Staples Center, Los Angeles',
       organizer: 'NBA Events',
       image: '/images/nba-finals.jpg',
-      price: 3500,
-      cryptoPrice: 1.2,
+      price: 0.01,
+      cryptoPrice: 0.01,
       cryptoCurrency: 'ETH',
       totalTickets: 20000,
       availableTickets: 5432
@@ -157,8 +157,8 @@ const eventsData = [
       location: 'Sky Lounge, Miami',
       organizer: 'Miami Nightlife Group',
       image: '/images/neon-party.jpg',
-      price: 500,
-      cryptoPrice: 0.5,
+      price: 0.01,
+      cryptoPrice: 0.01,
       cryptoCurrency: 'ETH',
       totalTickets: 1000,
       availableTickets: 387
@@ -174,8 +174,8 @@ const eventsData = [
       location: 'Modern Gallery, San Francisco',
       organizer: 'Future Art Collectors',
       image: '../images/fest_1.jpeg',
-      price: 800,
-      cryptoPrice: 0.3,
+      price: 0.01,
+      cryptoPrice: 0.01,
       cryptoCurrency: 'ETH',
       totalTickets: 1500,
       availableTickets: 967

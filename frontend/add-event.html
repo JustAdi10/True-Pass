@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruePass - Add Event</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #111827;
+            color: white;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #0f1623;
+            height: 70px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: #ff5722;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-warning {
+            background-color: transparent;
+            color: #ff5722;
+            border: 1px solid #ff5722;
+        }
+        
+        .btn-primary {
+            background-color: #ff5722;
+            color: white;
+        }
+        
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #1f2937;
+            border-radius: 8px;
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: #111827;
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+        
+        .form-hint {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 5px;
+        }
+        
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-notice {
+            color: #9ca3af;
+            font-size: 14px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #9ca3af;
+            background-color: #0f1623;
+            margin-top: 60px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">True<span>Pass</span></div>
+    </div>
+    
+    <div class="container">
+        <h1 class="page-title">Add New Event</h1>
+        
+        <div class="form-container">
+            <div class="form-group">
+                <label for="event-title">Event Title</label>
+                <input type="text" id="event-title" class="form-control" placeholder="Enter event title">
+            </div>
+            
+            <div class="form-group">
+                <label for="event-category">Category</label>
+                <select id="event-category" class="form-control">
+                    <option selected disabled>Select a category</option>
+                    <option value="CONFERENCE">Conference</option>
+                    <option value="NETWORKING">Networking</option>
+                    <option value="WORKSHOP">Workshop</option>
+                    <option value="WEBINAR">Webinar</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="event-capacity">Capacity</label>
+                <input type="number" id="event-capacity" class="form-control" placeholder="Number of attendees">
+            </div>
+            
+            <div class="form-group">
+                <label for="event-date">Date</label>
+                <input type="date" id="event-date" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="event-time">Time</label>
+                <input type="time" id="event-time" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="event-location">Location</label>
+                <input type="text" id="event-location" class="form-control" placeholder="Enter event location">
+                <div class="form-hint">Physical address or virtual meeting link</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="event-description">Description</label>
+                <textarea id="event-description" class="form-control" placeholder="Describe your event"></textarea>
+            </div>
+            
+            <div class="form-notice">
+                Events will be reviewed for compliance with our community guidelines before being published.
+            </div>
+            
+            <div class="form-buttons">
+                <a href="index.html" class="btn btn-warning">Cancel</a>
+                <div>
+                    <button id="save-draft-btn" class="btn btn-warning" style="margin-right: 10px;">Save as Draft</button>
+                    <button id="publish-btn" class="btn btn-primary">Publish Event</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        © 2025 TruePass. All rights reserved.
+    </div>
+    
+    <script>
+        // Function to determine event status based on date
+        function getEventStatus(eventDate, isDraft = false) {
+            if (isDraft) return "draft";
+            
+            const today = new Date();
+            const eventDay = new Date(eventDate);
+            
+            if (eventDay > today) {
+                return "upcoming";
+            } else {
+                return "past";
+            }
+        }
+
+        // Load events from localStorage
+        function loadEvents() {
+            const storedEvents = localStorage.getItem('eventsData');
+            if (storedEvents) {
+                return JSON.parse(storedEvents);
+            }
+            return [];
+        }
+
+        // Save events to localStorage
+        function saveEvents(events) {
+            localStorage.setItem('eventsData', JSON.stringify(events));
+        }
+
+        // Function to save event
+        function saveEvent(isDraft) {
+            // Get form values
+            const title = document.getElementById('event-title').value;
+            const category = document.getElementById('event-category').value;
+            const capacity = document.getElementById('event-capacity').value;
+            const date = document.getElementById('event-date').value;
+            const time = document.getElementById('event-time').value;
+            const location = document.getElementById('event-location').value;
+            const description = document.getElementById('event-description').value;
+            
+            // Validate form
+            if (!title || !category || !capacity || !date || !time || !location || !description) {
+                alert('Please fill in all fields');
+                return false;
+            }
+            
+            // Format date for display
+            const displayDate = new Date(date).toISOString().split('T')[0];
+            
+            // Create new event object
+            const newEvent = {
+                title: title,
+                category: category,
+                date: displayDate,
+                time: time,
+                location: location,
+                capacity: parseInt(capacity),
+                description: description,
+                status: getEventStatus(date, isDraft)
+            };
+            
+            // Load existing events
+            const events = loadEvents();
+            
+            // Add new event
+            events.push(newEvent);
+            
+            // Save updated events
+            saveEvents(events);
+            
+            return true;
+        }
+
+        // Save as Draft button
+        document.getElementById('save-draft-btn').addEventListener('click', () => {
+            if (saveEvent(true)) {
+                alert('Event saved as draft');
+                window.location.href = 'index.html';
+            }
+        });
+        
+        // Publish Event button
+        document.getElementById('publish-btn').addEventListener('click', () => {
+            if (saveEvent(false)) {
+                alert('Event published successfully');
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>
