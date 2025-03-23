@@ -16,7 +16,7 @@ import OrganizerLogin from './pages/OrganizerLogin';
 
 function AppContent() {
   const location = useLocation();
-  const hideHeaderFooter = location.pathname === "/"; // Hide Header & Footer only on RoleSelection
+  const hideHeaderFooter = ["/", "/attendee/login", "/organizer/login"].includes(location.pathname);
 
   return (
     <>
