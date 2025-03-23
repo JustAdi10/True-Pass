@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruePass - Payment Gateway</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            background-color: #E67E22;
+            color: white;
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .header-right {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .payment-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .payment-left {
+            flex: 2;
+        }
+        
+        .payment-right {
+            flex: 1;
+            background-color: #1E1E1E;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .payment-methods {
+            margin-bottom: 30px;
+        }
+        
+        .payment-header {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .metamask-btn {
+            display: flex;
+            align-items: center;
+            background-color: #1E1E1E;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .metamask-btn.active {
+            border: 2px solid #E67E22;
+        }
+        
+        .metamask-btn:hover {
+            border: 2px solid #E67E22;
+        }
+        
+        .metamask-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+        
+        .metamask-text {
+            font-size: 18px;
+        }
+        
+        .wallet-info {
+            background-color: #1E1E1E;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .wallet-address {
+            background-color: #2A2A2A;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            word-break: break-all;
+        }
+        
+        .order-summary-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .item-name {
+            font-weight: 400;
+        }
+        
+        .item-price {
+            font-weight: bold;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .checkout-btn {
+            background-color: #E67E22;
+            color: white;
+            border: none;
+            padding: 15px 0;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #D35400;
+        }
+        
+        .checkout-btn:disabled {
+            background-color: #7F8C8D;
+            cursor: not-allowed;
+        }
+        
+        .connect-wallet-btn {
+            background-color: #E67E22;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .connect-wallet-btn:hover {
+            background-color: #D35400;
+        }
+        
+        .connect-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status-indicator {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            background-color: #E74C3C;
+        }
+        
+        .status-indicator.connected {
+            background-color: #2ECC71;
+        }
+        
+        .status-text {
+            font-size: 14px;
+        }
+        
+        .transaction-details {
+            margin-top: 30px;
+        }
+        
+        .gas-fee {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #AAA;
+        }
+        
+        .loading {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #E67E22;
+            width: 20px;
+            height: 20px;
+            margin: 0 auto 10px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success-message {
+            display: none;
+            background-color: rgba(46, 204, 113, 0.2);
+            border: 1px solid #2ECC71;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .error-message {
+            display: none;
+            background-color: rgba(231, 76, 60, 0.2);
+            border: 1px solid #E74C3C;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .payment-container {
+                flex-direction: column;
+            }
+            
+            .header-right {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">TP</span>
+                <span class="logo-text">TruePass</span>
+            </div>
+            <div class="header-right">
+                <div class="connect-status">
+                    <div class="status-indicator" id="statusIndicator"></div>
+                    <span class="status-text" id="statusText">Not connected</span>
+                </div>
+                <button class="connect-wallet-btn" id="connectWalletBtn">Connect Wallet</button>
+            </div>
+        </header>
+        
+        <h1>Checkout</h1>
+        
+        <div class="payment-container">
+            <div class="payment-left">
+                <div class="payment-methods">
+                    <h2 class="payment-header">Select Payment Method</h2>
+                    <div class="metamask-btn active" id="metamaskOption">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="MetaMask" class="metamask-icon">
+                        <span class="metamask-text">Pay with MetaMask</span>
+                    </div>
+                </div>
+                
+                <div class="wallet-info" id="walletInfo">
+                    <h3>Wallet Address</h3>
+                    <div class="wallet-address" id="walletAddress">Connect your wallet to continue</div>
+                    
+                    <h3>Transaction Details</h3>
+                    <div class="gas-fee">
+                        <span>Estimated Gas Fee:</span>
+                        <span id="gasFee">~0.005 ETH</span>
+                    </div>
+                </div>
+                
+                <div class="loading" id="loadingIndicator">
+                    <div class="spinner"></div>
+                    <p>Processing transaction...</p>
+                </div>
+                
+                <div class="success-message" id="successMessage">
+                    <p>Payment successful! Your transaction has been processed.</p>
+                    <p>Transaction Hash: <span id="txHash"></span></p>
+                </div>
+                
+                <div class="error-message" id="errorMessage">
+                    <p>Transaction failed. Please try again.</p>
+                    <p id="errorDetails"></p>
+                </div>
+            </div>
+            
+            <div class="payment-right">
+                <h3 class="order-summary-title">Order Summary</h3>
+                
+                <div class="order-item">
+                    <span class="item-name">Summer Music Festival 2025</span>
+                    <span class="item-price">2 × 0.8 ETH</span>
+                </div>
+                
+                <div class="order-item">
+                    <span class="item-name">Subtotal</span>
+                    <span class="item-price">0.01 ETH</span>
+                </div>
+                
+                <div class="order-item">
+                    <span class="item-name">Service Fee (5%)</span>
+                    <span class="item-price">0.01 ETH</span>
+                </div>
+                
+                <div class="total-row">
+                    <span>Total</span>
+                    <span>0.02 ETH</span>
+                </div>
+                
+                <button class="checkout-btn" id="payNowBtn" disabled>Pay Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const connectWalletBtn = document.getElementById('connectWalletBtn');
+            const statusIndicator = document.getElementById('statusIndicator');
+            const statusText = document.getElementById('statusText');
+            const walletAddress = document.getElementById('walletAddress');
+            const payNowBtn = document.getElementById('payNowBtn');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const errorDetails = document.getElementById('errorDetails');
+            const txHash = document.getElementById('txHash');
+
+            let accounts = [];
+
+            // Check if MetaMask is installed
+            const isMetaMaskInstalled = () => {
+                return typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask;
+            };
+
+            // Update UI when wallet is connected
+            const updateUI = (connected, address = null) => {
+                if (connected) {
+                    statusIndicator.classList.add('connected');
+                    statusText.textContent = 'Connected';
+                    walletAddress.textContent = address;
+                    payNowBtn.disabled = false;
+                } else {
+                    statusIndicator.classList.remove('connected');
+                    statusText.textContent = 'Not connected';
+                    walletAddress.textContent = 'Connect your wallet to continue';
+                    payNowBtn.disabled = true;
+                }
+            };
+
+            // Handle connect wallet button click
+            connectWalletBtn.addEventListener('click', async () => {
+                if (!isMetaMaskInstalled()) {
+                    alert('MetaMask is not installed. Please install MetaMask to continue.');
+                    return;
+                }
+
+                try {
+                    accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const account = accounts[0];
+                    updateUI(true, account);
+                } catch (error) {
+                    console.error('Error connecting to MetaMask:', error);
+                    errorDetails.textContent = error.message || 'Could not connect to MetaMask';
+                    errorMessage.style.display = 'block';
+                }
+            });
+
+            // Handle network change
+            if (window.ethereum) {
+                window.ethereum.on('chainChanged', () => {
+                    window.location.reload();
+                });
+
+                // Handle account change
+                window.ethereum.on('accountsChanged', (newAccounts) => {
+                    accounts = newAccounts;
+                    if (accounts.length > 0) {
+                        updateUI(true, accounts[0]);
+                    } else {
+                        updateUI(false);
+                    }
+                });
+            }
+
+            // Pay Now button click
+            payNowBtn.addEventListener('click', async () => {
+                if (!isMetaMaskInstalled() || accounts.length === 0) {
+                    alert('Please connect your MetaMask wallet first.');
+                    return;
+                }
+
+                const amount = '5040'; // Amount in ETH (will be converted to Wei)
+                const transactionParameters = {
+                    to: '0x1234567890123456789012345678901234567890', // Replace with the actual recipient address
+                    from: accounts[0],
+                    value: '0x' + (amount * 1e18).toString(16), // Convert ETH to Wei
+                };
+
+                loadingIndicator.style.display = 'block';
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+
+                try {
+                    const txHash = await window.ethereum.request({
+                        method: 'eth_sendTransaction',
+                        params: [transactionParameters],
+                    });
+                    
+                    // Transaction successful
+                    loadingIndicator.style.display = 'none';
+                    document.getElementById('txHash').textContent = txHash;
+                    successMessage.style.display = 'block';
+                } catch (error) {
+                    // Transaction failed
+                    loadingIndicator.style.display = 'none';
+                    errorDetails.textContent = error.message || 'Transaction failed';
+                    errorMessage.style.display = 'block';
+                    console.error('Transaction error:', error);
+                }
+            });
+
+            // Check if already connected
+            if (isMetaMaskInstalled()) {
+                window.ethereum.request({ method: 'eth_accounts' })
+                    .then(currentAccounts => {
+                        accounts = currentAccounts;
+                        if (accounts.length > 0) {
+                            updateUI(true, accounts[0]);
+                        }
+                    })
+                    .catch(console.error);
+            }
+        });
+    </script>
+</body>
+</html>
