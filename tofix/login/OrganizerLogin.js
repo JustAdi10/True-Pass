@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faAt, faLock } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faUser, faAt, faLock } from "@fortawesome/free-solid-svg-icons";
 
 const OrgLogin = () => {
   const [isSignUp, setIsSignUp] = useState(false);
