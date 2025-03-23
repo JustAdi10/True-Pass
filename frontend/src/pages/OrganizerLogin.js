@@ -1,30 +1,46 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faAt, faLock } from "@fortawesome/free-solid-svg-icons";
 
 const OrgLogin = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [animationClass, setAnimationClass] = useState("");
-  
-  // Set initial positioning with a delay to let component mount first
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  // Set initial positioning with a delay to let the component mount first
   useEffect(() => {
     setAnimationClass("animated-signin");
   }, []);
-  
+
   const toggleSignIn = () => {
     setAnimationClass("animated-signin");
     setIsSignUp(false);
   };
-  
+
   const toggleSignUp = () => {
     setAnimationClass("animated-signup");
     setIsSignUp(true);
   };
-  
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Perform login logic here (e.g., API call)
+    // On successful login, redirect to HomePage
+    navigate("/home");
+  };
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    // Perform sign-up logic here (e.g., API call)
+    // On successful sign-up, redirect to HomePage
+    navigate("/home");
+  };
+
   return (
     <div className={`wrapper ${animationClass}`}>
       <div className="form-container sign-up">
-        <form action="#">
+        <form onSubmit={handleSignUp}>
           <h2>Sign up as<br /> an Organizer!</h2>
           <div className="form-group">
             <input type="text" required />
@@ -53,7 +69,7 @@ const OrgLogin = () => {
         </form>
       </div>
       <div className="form-container sign-in">
-        <form action="#">
+        <form onSubmit={handleLogin}>
           <h2>Welcome back!</h2>
           <div className="form-group">
             <input type="text" required />
@@ -85,8 +101,8 @@ const OrgLogin = () => {
         }
 
         :root {
-          --mainColor:rgb(0, 0, 0);
-          --whiteColor: #ffffff;
+          --mainColor: rgb(0, 0, 0);
+          --whiteColor: rgb(255, 255, 255);
           --titleColor: #000000;
           --labelColor: #000000;
         }
@@ -95,9 +111,9 @@ const OrgLogin = () => {
           font-size: 62.5%;
           scroll-behavior: smooth;
         }
-        
+
         body {
-          background: linear-gradient(to right,rgb(0, 0, 0), var(--mainColor));
+          background: linear-gradient(to right, rgb(0, 0, 0), var(--mainColor));
           font-weight: 400;
           min-height: 100vh;
           display: grid;
@@ -112,7 +128,7 @@ const OrgLogin = () => {
           margin: 0 auto;
         }
 
-        @media(min-width: 540px) {
+        @media (min-width: 540px) {
           .wrapper {
             width: 40rem;
           }
@@ -128,16 +144,14 @@ const OrgLogin = () => {
           width: 100%;
           height: 100%;
           background-color: var(--whiteColor);
-          border-radius: .5rem;
+          border-radius: 0.5rem;
           box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
         }
 
-        /* Initialize sign-up form to be rotated by default */
         .wrapper .form-container.sign-up {
           transform: rotate(7deg);
         }
 
-        /* Initialize sign-in form to be straight by default */
         .wrapper .form-container.sign-in {
           transform: rotate(0deg);
           z-index: 1;
@@ -164,13 +178,13 @@ const OrgLogin = () => {
           font-size: 1.6rem;
           text-transform: capitalize;
           color: var(--labelColor);
-          padding: 0 .5rem;
+          padding: 0 0.5rem;
           pointer-events: none;
-          transition: all .5s ease;
+          transition: all 0.5s ease;
         }
 
         .wrapper .form-container form .form-group .icon {
-          left: .5rem;
+          left: 0.5rem;
         }
 
         .wrapper .form-container form .form-group label {
@@ -181,19 +195,19 @@ const OrgLogin = () => {
           width: 100%;
           height: 4rem;
           padding: 0 1rem;
-          border-radius: .5rem;
+          border-radius: 0.5rem;
           border: none;
           outline: none;
-          border: .1rem solid var(--labelColor);
+          border: 0.1rem solid var(--labelColor);
           font-size: 1.6rem;
           color: var(--labelColor);
           background: transparent;
         }
 
-        form .form-group input:focus~label,
-        form .form-group input:valid~label,
-        form .form-group input:focus~.icon,
-        form .form-group input:valid~.icon {
+        form .form-group input:focus ~ label,
+        form .form-group input:valid ~ label,
+        form .form-group input:focus ~ .icon,
+        form .form-group input:valid ~ .icon {
           top: 0 !important;
           font-size: 1.2rem !important;
           background-color: var(--whiteColor);
@@ -208,7 +222,7 @@ const OrgLogin = () => {
           text-decoration: none;
           font-size: 1.4rem;
           text-transform: capitalize;
-          transition: all .5s ease;
+          transition: all 0.5s ease;
         }
 
         .wrapper .form-container form .forgot-pass a:hover {
@@ -216,7 +230,7 @@ const OrgLogin = () => {
         }
 
         .wrapper .form-container form .btn {
-          background: linear-gradient(to right,hsla(25, 75.00%, 47.10%, 0.72), var(--mainColor));
+          background: linear-gradient(to right, hsla(25, 75.00%, 47.10%, 0.72), var(--mainColor));
           color: var(--whiteColor);
           text-transform: capitalize;
           width: 100%;
@@ -225,9 +239,9 @@ const OrgLogin = () => {
           font-weight: 500;
           outline: none;
           border: none;
-          border-radius: .5rem;
+          border-radius: 0.5rem;
           cursor: pointer;
-          box-shadow: 0 .2rem 1rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.4);
         }
 
         .wrapper .form-container form .link {
@@ -246,7 +260,7 @@ const OrgLogin = () => {
           color: var(--mainColor);
           text-decoration: none;
           font-weight: 600;
-          transition: all .5s ease;
+          transition: all 0.5s ease;
           cursor: pointer;
         }
 
@@ -254,7 +268,6 @@ const OrgLogin = () => {
           color: #da4453;
         }
 
-        /* Animation when clicking 'sign in' */
         .wrapper.animated-signin .form-container.sign-in {
           animation: signin-flip 1s ease-in-out forwards;
         }
@@ -275,7 +288,7 @@ const OrgLogin = () => {
         }
 
         .wrapper.animated-signin .form-container.sign-up {
-          animation: rotatecard-signin .7s ease-in-out forwards;
+          animation: rotatecard-signin 0.7s ease-in-out forwards;
           z-index: 0;
         }
 
@@ -291,7 +304,6 @@ const OrgLogin = () => {
           }
         }
 
-        /* Animation when clicking 'sign up' */
         .wrapper.animated-signup .form-container.sign-up {
           animation: signup-flip 1s ease-in-out forwards;
         }
@@ -313,8 +325,8 @@ const OrgLogin = () => {
         }
 
         .wrapper.animated-signup .form-container.sign-in {
-          animation: rotatecard-signup .7s ease-in-out forwards;
-          animation-delay: .5s;
+          animation: rotatecard-signup 0.7s ease-in-out forwards;
+          animation-delay: 0.5s;
         }
 
         @keyframes rotatecard-signup {
