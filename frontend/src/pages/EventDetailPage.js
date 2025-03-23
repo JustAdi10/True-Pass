@@ -122,7 +122,7 @@ const eventsData = [
       time: '12:00 PM - 11:00 PM',
       location: 'Central Park, New York',
       organizer: 'Festival Productions Inc.',
-      image: '/images/summer-festival.jpg',
+      image: 'https://www.columbusdirect.com/media/1901/music-festival-2012.jpg?width=800',
       price: 2400,
       cryptoPrice: 0.8,
       cryptoCurrency: 'ETH',
