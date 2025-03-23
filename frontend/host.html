@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruePass - Events</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #111827;
+            color: white;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #0f1623;
+            height: 70px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: #ff5722;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .page-description {
+            text-align: center;
+            color: #9ca3af;
+            margin-bottom: 40px;
+        }
+        
+        .events-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .sort-dropdown {
+            background-color: #1f2937;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .nav-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: transparent;
+            color: white;
+            border: none;
+        }
+        
+        .nav-tab.active {
+            background-color: #ff5722;
+            border-radius: 5px;
+        }
+        
+        .event-card {
+            background-color: #1f2937;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .event-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .event-category {
+            background-color: #000;
+            color: #ff5722;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        
+        .event-details {
+            margin-bottom: 20px;
+        }
+        
+        .event-details div {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .event-details div i {
+            width: 20px;
+            margin-right: 10px;
+            color: #9ca3af;
+        }
+        
+        .event-description {
+            color: #9ca3af;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-danger {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .btn-primary {
+            background-color: #ff5722;
+            color: white;
+        }
+        
+        .add-event {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #9ca3af;
+            background-color: #0f1623;
+            margin-top: 60px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">True<span>Pass</span></div>
+    </div>
+    
+    <div class="container">
+        <h1 class="page-title">Manage Your Events with Ease</h1>
+        <p class="page-description">Create, publish, and track your events all in one place. Reach more attendees and grow your community.</p>
+        
+        <div class="events-header">
+            <h2>My Events</h2>
+            <select class="sort-dropdown">
+                <option>Newest First</option>
+                <option>Oldest First</option>
+                <option>Alphabetical</option>
+            </select>
+        </div>
+        
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-filter="all">All</button>
+            <button class="nav-tab" data-filter="upcoming">Upcoming</button>
+            <button class="nav-tab" data-filter="past">Past</button>
+            <button class="nav-tab" data-filter="draft">Drafts</button>
+        </div>
+        
+        <div class="events-list">
+            <!-- Events will be dynamically added here -->
+        </div>
+        
+        <div class="add-event">
+            <a href="add-event.html" class="btn btn-primary">+Add New Event</a>
+        </div>
+    </div>
+    
+    <div class="footer">
+        © 2025 TruePass. All rights reserved.
+    </div>
+    
+    <script>
+        // Load events from localStorage
+        let eventsData = [];
+        
+        function loadEvents() {
+            const storedEvents = localStorage.getItem('eventsData');
+            if (storedEvents) {
+                eventsData = JSON.parse(storedEvents);
+            } else {
+                // Default events if none exist
+                eventsData = [
+                    {
+                        title: "Tech Conference 2025",
+                        category: "CONFERENCE",
+                        date: "2025-04-15",
+                        time: "09:00",
+                        location: "Convention Center, San Francisco",
+                        capacity: 500,
+                        description: "Join us for the biggest tech conference of the year featuring keynotes, workshops, and networking opportunities.",
+                        status: "upcoming"
+                    },
+                    {
+                        title: "Networking Mixer",
+                        category: "NETWORKING",
+                        date: "2025-02-10",
+                        time: "18:00",
+                        location: "Downtown Business Hub, Electronics City, Bangalore, India",
+                        capacity: 75,
+                        description: "Connect with professionals in your industry over drinks and appetizers.",
+                        status: "past"
+                    }
+                ];
+                localStorage.setItem('eventsData', JSON.stringify(eventsData));
+            }
+        }
+
+        // Function to render events based on filter
+        function renderEvents(filter = "all") {
+            const eventsContainer = document.querySelector('.events-list');
+            eventsContainer.innerHTML = '';
+            
+            let filteredEvents = eventsData;
+            
+            // Filter events based on selection
+            if (filter !== "all") {
+                filteredEvents = eventsData.filter(event => event.status === filter);
+            }
+            
+            // If no events match the filter
+            if (filteredEvents.length === 0) {
+                eventsContainer.innerHTML = '<div class="event-card"><p>No events found.</p></div>';
+                return;
+            }
+            
+            // Create event cards
+            filteredEvents.forEach(event => {
+                const eventCard = document.createElement('div');
+                eventCard.className = 'event-card';
+                
+                eventCard.innerHTML = `
+                    <div class="event-title">
+                        <h3>${event.title}</h3>
+                        <span class="event-category">${event.category}</span>
+                    </div>
+                    <div class="event-details">
+                        <div>
+                            <i>📅</i>
+                            <span>Date: ${event.date}</span>
+                        </div>
+                        <div>
+                            <i>⏰</i>
+                            <span>Time: ${event.time}</span>
+                        </div>
+                        <div>
+                            <i>📍</i>
+                            <span>Location: ${event.location}</span>
+                        </div>
+                        <div>
+                            <i>👥</i>
+                            <span>Capacity: ${event.capacity} attendees</span>
+                        </div>
+                    </div>
+                    <p class="event-description">${event.description}</p>
+                    <button class="btn btn-danger delete-btn" data-title="${event.title}">Delete</button>
+                `;
+                
+                eventsContainer.appendChild(eventCard);
+            });
+            
+            // Attach event listeners to delete buttons
+            attachDeleteButtonListeners();
+        }
+
+        // Function to attach event listeners to delete buttons
+        function attachDeleteButtonListeners() {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    if (confirm('Are you sure you want to delete this event?')) {
+                        // Get the event title to identify which event to remove
+                        const eventTitle = e.target.getAttribute('data-title');
+                        
+                        // Remove from data array
+                        eventsData = eventsData.filter(event => event.title !== eventTitle);
+                        
+                        // Update localStorage
+                        localStorage.setItem('eventsData', JSON.stringify(eventsData));
+                        
+                        // Re-render events
+                        const activeTab = document.querySelector('.nav-tab.active');
+                        const filter = activeTab.getAttribute('data-filter');
+                        renderEvents(filter);
+                    }
+                });
+            });
+        }
+
+        // Initialize page
+        function init() {
+            // Load events
+            loadEvents();
+            
+            // Set up tab functionality
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    navTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Get the filter from data attribute
+                    const filter = tab.getAttribute('data-filter');
+                    
+                    // Render events based on filter
+                    renderEvents(filter);
+                });
+            });
+            
+            // Set up sort functionality
+            const sortDropdown = document.querySelector('.sort-dropdown');
+            sortDropdown.addEventListener('change', () => {
+                const sortOption = sortDropdown.value;
+                
+                // Sort events based on selection
+                if (sortOption === "Newest First") {
+                    eventsData.sort((a, b) => new Date(b.date) - new Date(a.date));
+                } else if (sortOption === "Oldest First") {
+                    eventsData.sort((a, b) => new Date(a.date) - new Date(b.date));
+                } else if (sortOption === "Alphabetical") {
+                    eventsData.sort((a, b) => a.title.localeCompare(b.title));
+                }
+                
+                // Save sorted events
+                localStorage.setItem('eventsData', JSON.stringify(eventsData));
+                
+                // Re-render events
+                const activeTab = document.querySelector('.nav-tab.active');
+                const filter = activeTab.getAttribute('data-filter');
+                renderEvents(filter);
+            });
+            
+            // Initial render
+            renderEvents();
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
