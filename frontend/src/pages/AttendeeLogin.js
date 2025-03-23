@@ -25,7 +25,7 @@ const Login = () => {
     <div className={`wrapper ${animationClass}`}>
       <div className="form-container sign-up">
         <form action="#">
-          <h2>ready, set,<br /> go!</h2>
+        <h2>Sign up as<br /> an Attendee!</h2>
           <div className="form-group">
             <input type="text" required />
             <FontAwesomeIcon icon={faUser} className="icon" />
@@ -54,7 +54,7 @@ const Login = () => {
       </div>
       <div className="form-container sign-in">
         <form action="#">
-          <h2>Missed Us?</h2>
+          <h2>Welcome back!</h2>
           <div className="form-group">
             <input type="text" required />
             <FontAwesomeIcon icon={faUser} className="icon" />
@@ -85,8 +85,8 @@ const Login = () => {
         }
 
         :root {
-          --mainColor: #292966;
-          --whiteColor: #ffffff;
+          --mainColor:rgb(0, 0, 0);
+          --whiteColor:rgb(255, 255, 255);
           --titleColor: #000000;
           --labelColor: #000000;
         }
@@ -97,7 +97,7 @@ const Login = () => {
         }
 
         body {
-          background: linear-gradient(to right, #292966, var(--mainColor));
+          background: linear-gradient(to right,rgb(0, 0, 0), var(--mainColor));
           font-weight: 400;
           min-height: 100vh;
           display: grid;
@@ -216,7 +216,7 @@ const Login = () => {
         }
 
         .wrapper .form-container form .btn {
-          background: linear-gradient(to right, #a3a3cc, var(--mainColor));
+          background: linear-gradient(to right, hsla(25, 75.00%, 47.10%, 0.72), var(--mainColor));
           color: var(--whiteColor);
           text-transform: capitalize;
           width: 100%;

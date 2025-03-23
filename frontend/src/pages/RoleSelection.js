@@ -15,7 +15,7 @@ const RoleSelection = () => {
   return (
     <div className="role-selection-container">
       <div className={`header-content ${loaded ? 'fade-in' : ''}`}>
-        <h1>Welcome to EventHub</h1>
+        <h1 >Welcome to TruePass</h1>
         <p>Please select how you want to continue</p>
       </div>
       
@@ -50,7 +50,7 @@ const RoleSelection = () => {
           justify-content: center;
           min-height: 100vh;
           padding: 2rem;
-          background-color: #292966;
+          background-color:rgb(0, 0, 0);
           color: #333;
         }
         
