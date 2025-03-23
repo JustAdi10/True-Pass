@@ -407,6 +407,7 @@ export const PurchaseTicketButton = ({ event }) => {
 // CartPage component
 const CartPage = () => {
   const { cart, removeFromCart, updateQuantity, getItemCount } = useCart();
+  const navigate = useNavigate();
   
   // Calculate cart totals
   const subtotal = cart.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0);
@@ -415,6 +416,15 @@ const CartPage = () => {
   
   // Calculate total number of items
   const itemCount = getItemCount();
+  
+  // Function to handle checkout and redirect to payment page
+  const handleCheckout = () => {
+    // You can optionally save the order details to localStorage before redirecting
+    localStorage.setItem('orderTotal', total.toFixed(2));
+    
+    // Redirect to payment.html
+    navigate('/payment');
+  };
   
   return (
     <CartContainer>
@@ -506,7 +516,7 @@ const CartPage = () => {
             </TotalItem>
             
             <ButtonsContainer>
-              <CheckoutButton>Proceed to Checkout</CheckoutButton>
+              <CheckoutButton onClick={handleCheckout}>Proceed to Checkout</CheckoutButton>
               <ContinueShoppingButton to="/">Continue Shopping</ContinueShoppingButton>
             </ButtonsContainer>
           </CartSummary>
