@@ -1,0 +1,194 @@
+:root {
+    --background-dark: #0f1520;
+    --background-darker: #0a0e16;
+    --background-card: #1a2132;
+    --primary: #ff5500;
+    --primary-hover: #ff6a1f;
+    --text-light: #ffffff;
+    --text-dim: #a0a8b8;
+    --danger: #e53e3e;
+    --danger-hover: #f56565;
+    --border-color: #2a3245;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  
+  .app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .page-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .page-subtitle {
+    color: var(--text-dim);
+    font-size: 1rem;
+  }
+  
+  .btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+  }
+  
+  .btn-outline:hover {
+    background-color: rgba(255, 85, 0, 0.1);
+  }
+  
+  .btn-danger {
+    background-color: var(--danger);
+    color: white;
+  }
+  
+  .btn-danger:hover {
+    background-color: var(--danger-hover);
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 4px;
+    background-color: var(--background-darker);
+    border: 1px solid var(--border-color);
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+  
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  
+  .form-textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .form-hint {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    color: var(--text-dim);
+  }
+  
+  .tab-group {
+    display: flex;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .tab {
+    padding: 0.6rem 1.2rem;
+    background-color: var(--background-darker);
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-size: 0.9rem;
+  }
+  
+  .tab.active {
+    background-color: var(--primary);
+    color: white;
+  }
+  
+  .event-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .event-grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+  
+  .tag {
+    background-color: #000;
+    color: var(--primary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
