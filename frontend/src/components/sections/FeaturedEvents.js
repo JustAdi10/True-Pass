@@ -52,7 +52,7 @@ const FeaturedEvents = ({ title }) => {
   const events = [
     {
       id: 1,
-      title: 'Summer Music Festival 2025',
+      title: 'COLDPLAY INDIA TOUR 2025',
       description: 'Featuring top artists and bands',
       image: 'https://www.columbusdirect.com/media/1901/music-festival-2012.jpg?width=800',
       category: 'Concerts',

@@ -194,7 +194,7 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <Link to="/">
+      <Link to="/home">
         <Logo>
           <div className="logo-square">TP</div>
           <div className="logo-text">TruePass</div>
