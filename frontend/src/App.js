@@ -37,7 +37,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<RoleSelection />} /> {/* Default route */}
+          <Route path="/" element={<HomePage />} /> {/* Default route */}
           <Route path="/home" element={<HomePage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
