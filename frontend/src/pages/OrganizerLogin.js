@@ -27,14 +27,14 @@ const OrgLogin = () => {
     e.preventDefault();
     // Perform login logic here (e.g., API call)
     // On successful login, redirect to HomePage
-    navigate("/home");
+    navigate("../frontend/HostPage");
   };
 
   const handleSignUp = (e) => {
     e.preventDefault();
     // Perform sign-up logic here (e.g., API call)
     // On successful sign-up, redirect to HomePage
-    navigate("/home");
+    navigate("../frontend/HostPage");
   };
 
   return (
