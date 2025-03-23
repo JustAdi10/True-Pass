@@ -516,7 +516,7 @@ const CartPage = () => {
             </TotalItem>
             
             <ButtonsContainer>
-              <CheckoutButton>Proceed to Checkout</CheckoutButton>
+              <CheckoutButton onClick={() => window.location.href = '/payment.html'}>Proceed to Checkout</CheckoutButton>
               <ContinueShoppingButton to="/">Continue Shopping</ContinueShoppingButton>
             </ButtonsContainer>
           </CartSummary>
