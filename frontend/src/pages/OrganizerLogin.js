@@ -41,7 +41,7 @@ const OrgLogin = () => {
     <div className={`wrapper ${animationClass}`}>
       <div className="form-container sign-up">
         <form onSubmit={handleSignUp}>
-          <h2>Sign up as<br /> an Organizer!</h2>
+          <h2><br/>Sign up as<br /> an Organizer!</h2>
           <div className="form-group">
             <input type="text" required />
             <FontAwesomeIcon icon={faUser} className="icon" />

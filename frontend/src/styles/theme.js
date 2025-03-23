@@ -9,7 +9,14 @@ export const theme = {
   },
     fonts: {
       heading: "'Inter', sans-serif",
-      body: "'Inter', sans-serif",
+      body: "'Inter', sans-serif"
+      ,
+    },
+    fontSizes: {
+      small: '1rem',
+      medium: '1.2rem',
+      large: '1.5rem',
+      xlarge: '2rem',
     },
     borderRadius: {
       small: '4px',
