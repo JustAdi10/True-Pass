@@ -13,7 +13,6 @@ import CartPage from "./pages/CartPage";
 import RoleSelection from './pages/RoleSelection';
 import AttendeeLogin from './pages/AttendeeLogin'; // Import AttendeeLogin
 import OrganizerLogin from './pages/OrganizerLogin'; // Import OrganizerLogin
-import ProfilePage from './pages/ProfilePage';
 
 function App() {
   useEffect(() => {
@@ -38,7 +37,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} /> {/* Default route */}
+          <Route path="/" element={<RoleSelection />} /> {/* Set RoleSelection as the default route */}
           <Route path="/home" element={<HomePage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
@@ -46,7 +45,6 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/attendee/login" element={<AttendeeLogin />} /> {/* Attendee Login route */}
           <Route path="/organizer/login" element={<OrganizerLogin />} /> {/* Organizer Login route */}
-          <Route path="/profilepage" element={<ProfilePage/>} />
         </Routes>
         <Footer />
       </Router>
